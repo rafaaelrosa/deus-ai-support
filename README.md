@@ -19,7 +19,18 @@ Use that exact URL in **App Store Connect → App Information → Support URL**.
 | Item        | Purpose |
 | ----------- | ------- |
 | `index.html` | Single-page support: contact, FAQ (English). Edit email and copy before launch. |
+| `app-ads.txt` | [IAB app-ads.txt](https://iabtechlab.com/ads-txt/) for **Google AdMob** validation. Must stay in sync with the **Support URL** (or Marketing URL) domain in App Store Connect. |
 | `.gitignore` | Keeps local/editor noise out of the repo. |
+
+### AdMob / app-ads.txt (iOS)
+
+After Pages deploy, the file must be reachable at:
+
+`https://<user>.github.io/<repo>/app-ads.txt`
+
+In **App Store Connect**, the **Support URL** (or the developer site URL AdMob uses) must be the **same site** — e.g. `https://<user>.github.io/<repo>/` — so Google’s crawler looks under that host/path. If validation still fails, Google may be resolving only the hostname (`*.github.io`); in that case use a **custom domain** on this Pages site and set that URL in the store, then keep `app-ads.txt` at `https://your-domain.com/app-ads.txt`.
+
+Re-check validation in AdMob after publishing; propagation can take a few minutes.
 
 No build step: static HTML + inline CSS only.
 
